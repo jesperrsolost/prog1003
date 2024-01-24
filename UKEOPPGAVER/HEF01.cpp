@@ -1,6 +1,8 @@
 /**
  * Oppgave 1 i heftet
  * 
+ * Ferdig: Ja
+ * 
  * @file HEF01.cpp
  * @author Jesper Ruud Soløst
  * 
