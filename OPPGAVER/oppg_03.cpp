@@ -1,7 +1,7 @@
 /**
- *   Løsningsforslag til oppgave nr 3.
+ *   Lï¿½sningsforslag til oppgave nr 3.
  *
- *   Modifisert utgave av løsningen til oppgave nr 2: med bruk av funksjoner.
+ *   Modifisert utgave av lï¿½sningen til oppgave nr 2: med bruk av funksjoner.
  *
  *   @file    OPPG_03.CPP
  *   @author  Frode Haug, NTNU
@@ -14,10 +14,10 @@ using namespace std;
 
 
 const int MINTEMP   = -70;   ///<  Absolutt laveste mulige temperatur.
-const int MAXTEMP   =  70;   ///<  Absolutt høyeste mulige temperatur.
-const int MAXNEDBOR = 200;   ///<  Absolutt høyeste mulige nedbør pr.døgn.
-const int MINDAGER  =  28;   ///<  Minimum antall dager i en måned.
-const int MAXDAGER  =  31;   ///<  Maksimum antall dager i en måned.
+const int MAXTEMP   =  70;   ///<  Absolutt hï¿½yeste mulige temperatur.
+const int MAXNEDBOR = 200;   ///<  Absolutt hï¿½yeste mulige nedbï¿½r pr.dï¿½gn.
+const int MINDAGER  =  2;   ///<  Minimum antall dager i en mï¿½ned.
+const int MAXDAGER  =  31;   ///<  Maksimum antall dager i en mï¿½ned.
 
 
 float gjennomsnitt(const int verdi1, const int verdi2);
@@ -29,38 +29,38 @@ int lesTall(const char t[], const int min, const int max);
  */
 int main ()  {
   int svar,                 //  Brukersvar til om vil fortsette eller ei.
-      antDager,             //  Antall dager i aktuell måned.
+      antDager,             //  Antall dager i aktuell mï¿½ned.
       min,                  //  Min.temp EN gitt dag.
-      nedbor,               //  Nedbør EN gitt dag.
-      totMin,               //  TOTALT min.grader i aktuell måned.
-      totMax,               //  TOTALT max.grader i aktuell måned.
-      totNedbor,            //  TOTALT nedbør i aktuell måned.
-      mestNedbor,           //  Mest nedbør falt på en dag.
-      nedborDag;            //  Dagnummeret med mest nedbør.
+      nedbor,               //  Nedbï¿½r EN gitt dag.
+      totMin,               //  TOTALT min.grader i aktuell mï¿½ned.
+      totMax,               //  TOTALT max.grader i aktuell mï¿½ned.
+      totNedbor,            //  TOTALT nedbï¿½r i aktuell mï¿½ned.
+      mestNedbor,           //  Mest nedbï¿½r falt pï¿½ en dag.
+      nedborDag;            //  Dagnummeret med mest nedbï¿½r.
 
-  svar = lesTall("\nLese inn værdata for en måned", 0, 1);   //  Kjøre programmet?
+  svar = lesTall("\nLese inn vï¿½rdata for en mï¿½ned", 0, 1);   //  Kjï¿½re programmet?
 
-  while (svar == 1)  {       //  Ennå IKKE svart '0':
-                             //  Leser antall dager i måneden (28-31):
-     antDager = lesTall("Antall dager i måneden", MINDAGER, MAXDAGER);
+  while (svar == 1)  {       //  Ennï¿½ IKKE svart '0':
+                             //  Leser antall dager i mï¿½neden (28-31):
+     antDager = lesTall("Antall dager i mï¿½neden", MINDAGER, MAXDAGER);
 
-     totMin = totMax = totNedbor = 0;     //  MÅ huske å nullstille/
+     totMin = totMax = totNedbor = 0;     //  Mï¿½ huske ï¿½ nullstille/
      mestNedbor = -1;    nedborDag = 0;   //    initiere variable!
 
-     for (int i = 1;  i <= antDager;  i++)  { //  Går gjennom HELE måneden:
+     for (int i = 1;  i <= antDager;  i++)  { //  Gï¿½r gjennom HELE mï¿½neden:
          cout << "\nDag nr." << setw(2) << i << ":\n";
                                           //  Leser korrekt min.temp dag nr.i:
          min = lesTall("Minimumstemp", MINTEMP, MAXTEMP);
          totMin += min;                   //  Summerer totalen.
                                           //  Leser korrekt max.temp dag nr.i:
          totMax += lesTall("Maksimumstemp", min, MAXTEMP); //Summerer totalen.
-                                          //  Leser korrekt nedbør dag nr.i:
-         nedbor = lesTall("Nedbør", 0, MAXNEDBOR);
+                                          //  Leser korrekt nedbï¿½r dag nr.i:
+         nedbor = lesTall("Nedbï¿½r", 0, MAXNEDBOR);
          totNedbor += nedbor;             //  Summerer totalen.
 
-         if (nedbor > mestNedbor) {       //  Ny nedbørsrekord?
+         if (nedbor > mestNedbor) {       //  Ny nedbï¿½rsrekord?
              mestNedbor = nedbor;         //  Lagrer unna rekorden,
-             nedborDag = i;               //    og på hvilken dag.
+             nedborDag = i;               //    og pï¿½ hvilken dag.
          }
      }
                                     //  Skriver gjennomsnitter og EN totalsum:
@@ -68,16 +68,16 @@ int main ()  {
           << gjennomsnitt(totMin, antDager) << " grader C\n";
      cout << "Gjennomsnittlig max.temp: "
           << gjennomsnitt(totMax, antDager) << " grader C\n";
-     cout << "Gjennomsnittlig nedbør:   "
+     cout << "Gjennomsnittlig nedbï¿½r:   "
           << gjennomsnitt(totNedbor, antDager) << " mm\n";
-     cout << "Total nedbør i måneden:   " << totNedbor <<  " mm\n";
-     cout << "Det falt mest nedbør på dag nr."
+     cout << "Total nedbï¿½r i mï¿½neden:   " << totNedbor <<  " mm\n";
+     cout << "Det falt mest nedbï¿½r pï¿½ dag nr."
           << nedborDag << " med " << mestNedbor << " mm\n";
-                                             //  Kjøre programmet igjen?
-     svar = lesTall("\nLese inn værdata for en måned til", 0, 1);
+                                             //  Kjï¿½re programmet igjen?
+     svar = lesTall("\nLese inn vï¿½rdata for en mï¿½ned til", 0, 1);
   }
 
-  cout << "\n\n\nHa en fortsatt god (vær(syk))dag!\n\n";
+  cout << "\n\n\nHa en fortsatt god (vï¿½r(syk))dag!\n\n";
 
   return 0;
 }
@@ -86,8 +86,8 @@ int main ()  {
 /**
  *  Funksjon som beregner float-gjennomsnittet av to int-verdier.
  *
- *  @param     verdi1  - int-verdien over brøkstreken
- *  @param     verdi2  - int-verdien under brøkstreken
+ *  @param     verdi1  - int-verdien over brï¿½kstreken
+ *  @param     verdi2  - int-verdien under brï¿½kstreken
  *  @return    float-verdien av   verdi1 / verdi2
  */
 float gjennomsnitt(const int verdi1, const int verdi2) {
@@ -98,7 +98,7 @@ float gjennomsnitt(const int verdi1, const int verdi2) {
 /**
 *  Leser og returnerer et heltall mellom to gitte grenser.
 *
-*  @param   t    - Ledetekst til brukeren når ber om input/et tall
+*  @param   t    - Ledetekst til brukeren nï¿½r ber om input/et tall
 *  @param   min  - Minimum for innlest og godtatt tallverdi
 *  @param   max  - Maksimum for innlest og godtatt tallverdi
 *  @return  Godtatt verdi i intervallet 'min' - 'max'
