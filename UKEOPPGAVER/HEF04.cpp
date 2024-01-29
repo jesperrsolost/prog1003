@@ -40,7 +40,7 @@ int main(){
 /**
  * Funksjon som finner ut av hvilken av de to parametrene som er 
  * størst/senest/høyest, og returnerer denne.
- * @return 
+ * @return returnerer største verdi
 */
 Tid storst(const Tid tid1, const Tid tid2){
     int tot1 = (tid1.time * 3600) + (tid1.minutt * 60) + tid1.sekund,

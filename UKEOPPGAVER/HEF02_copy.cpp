@@ -1,6 +1,6 @@
 /**
  * Oppgave 2 i heftet
- * Ferdig: Nei
+ * Ferdig: Delvis
  * 
  * @file HEF02.cpp
  * @author Jesper Ruud Soløst
