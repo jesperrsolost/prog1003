@@ -1,7 +1,7 @@
 /**
- *   Løsningsforslag til oppgave nr 4.
+ *   Lï¿½sningsforslag til oppgave nr 4.
  *
- *   Finner den største/høyeste/seneste av fire Tid-structer.
+ *   Finner den stï¿½rste/hï¿½yeste/seneste av fire Tid-structer.
  *
  *   @file    OPPG_04.CPP
  *   @author  Frode Haug, NTNU
@@ -35,11 +35,11 @@ int main ()  {
         tid4 = { 19,  2, 49},
         svar;
 
-    svar = storst(tid1, tid2);      //  Finner den største av nr.1 og 2.
-    svar = storst(svar, tid3);      //  Er nr.3 enda større/senere?
-    svar = storst(svar, tid4);      //  Er nr.4 større/senere enn dette igjen?
-                                    //  Skriver den største funnet/beregnet:
-    cout << "\nSeneste/største/høyeste tidspunkt er:   " 
+    svar = storst(tid1, tid2);      //  Finner den stï¿½rste av nr.1 og 2.
+    svar = storst(svar, tid3);      //  Er nr.3 enda stï¿½rre/senere?
+    svar = storst(svar, tid4);      //  Er nr.4 stï¿½rre/senere enn dette igjen?
+                                    //  Skriver den stï¿½rste funnet/beregnet:
+    cout << "\nSeneste/stï¿½rste/hï¿½yeste tidspunkt er:   " 
          << svar.time << ':' << svar.minutt << ':' << svar.sekund << "\n\n\n";
 
     return 0;
@@ -47,14 +47,14 @@ int main ()  {
 
 
 /**
- *  Finner og returnerer den største av to Tid-structer.
+ *  Finner og returnerer den stï¿½rste av to Tid-structer.
  *
  *  @param     tid1  - Den 1.Tid-structen
  *  @param     tid2  - Den 2.Tid-structen
- *  @return    Den structen som er størst (er seneste/høyeste tidspunkt)
+ *  @return    Den structen som er stï¿½rst (er seneste/hï¿½yeste tidspunkt)
  */
 Tid storst(const Tid tid1, const Tid tid2) {  //  #sekunder siden midnatt:
     int tot1 = (tid1.time * 3600) + (tid1.minutt * 60) + tid1.sekund,
         tot2 = (tid2.time * 3600) + (tid2.minutt * 60) + tid2.sekund;
-    return ((tot1 >= tot2) ? tid1 : tid2);    //  Returnerer største struct.
+    return ((tot1 >= tot2) ? tid1 : tid2);    //  Returnerer stï¿½rste struct.
 }

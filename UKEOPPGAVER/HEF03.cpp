@@ -116,6 +116,9 @@ int lesTall(const char t[], const int min, const int max){
 
 /**
  * Funksjon som regner gjennomsnitt
+ * @param verdi1 første verdien 
+ * @param verdi2 andre verdien
+ * @return Float gjennomsnittet av de to verdiene
 */
 float gjennomsnitt(const int verdi1, const int verdi2){
     return static_cast <float> (verdi1 / verdi2);

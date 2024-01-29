@@ -1,0 +1,1 @@
+return ((tot1 >= tot2) ? tid1 : tid2);
