@@ -1,6 +1,8 @@
 /**
  * Oppgave 5 i heftet
  * 
+ * Ferdig: Ja
+ * 
  * @file HEF05.cpp
  * @author Jesper Ruud Soløst
  * 
@@ -8,7 +10,6 @@
 */
 
 #include <iostream>                             // cout, cin
-#include <iomanip> 
 #include "LesData2.h"                           // lesInt, lesChar     
 
 using namespace std;
