@@ -14,7 +14,7 @@
 using namespace std;
 
 const int STRLEN           = 40;  ///< Max.tekstlengde.
-const int MAXFORELESNINGER = 1;  ///< Max.antall forelesninger.
+const int MAXFORELESNINGER = 2;  ///< Max.antall forelesninger.
 
 struct Forelesning {
     char emne[STRLEN/2],
@@ -33,11 +33,16 @@ void forelesningSkrivData(const Forelesning* f);
 int main(){
     Forelesning forelesninger[MAXFORELESNINGER];
 
-    for (int i = 0; i < MAXFORELESNINGER; i++) {
+    for (int i = 0; i < MAXFORELESNINGER; i++) {            // Leser inn data
         cout << "Data om forelesning nr." << i+1 << "\n";
         forelesningLesData(&forelesninger[i]);
     }
-    forelesningSkrivData(&forelesninger[0]);
+    
+    for (int i = 0; i < MAXFORELESNINGER; i++){             // Skriver ut data
+        cout << "Data om forelesning " << i+1 << ":\n";
+        forelesningSkrivData(&forelesninger[i]);
+    }
+
     return 0;
 }
 
@@ -53,11 +58,18 @@ void forelesningLesData(Forelesning* f){
     f->timeSlutt = lesInt("Time slutt:", 0, 23);
     f->minuttSlutt = lesInt("Minutt slutt:", 0, 59);
 
+    cout << "\n\n";
 }
 
 /**
  * Skriver ut alle structenes seks data
 */
 void forelesningSkrivData(const Forelesning* f){
-    cout << f->emne << "\n" << f->foreleser << "\n";
+    cout  << "Emne     : " << f->emne << "\n" 
+          << "Foreleser: " << f->foreleser << "\n"
+          << "Sted     : " << f->sted << "\n"
+          << "Tidspunkt: " << f->timeStart << ":" << f->minuttStart << " - "
+          << f->timeSlutt << ":" << f->minuttSlutt;
+    
+    cout << "\n\n";
 }

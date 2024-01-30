@@ -1,8 +1,8 @@
 /**
- *   Løsningsforslag til oppgave nr 5.
+ *   Lï¿½sningsforslag til oppgave nr 5.
  *
  *   Program som leser inn data om ulike forelesninger i ulike emner
- *   og skriver dette ut igjen på skjermen.
+ *   og skriver dette ut igjen pï¿½ skjermen.
  *
  *   @file    OPPG_05.CPP
  *   @author  Frode Haug, NTNU
@@ -10,7 +10,7 @@
 
 
 #include <iostream>                //  cout, cin
-#include "LesData2.h"              //  Verktøykasse for lesing av diverse data
+#include "LesData2.h"              //  Verktï¿½ykasse for lesing av diverse data
 using namespace std;
 
 
@@ -58,7 +58,7 @@ int main ()  {
 /**
  *  Leser inn verdier til ALLE datamedlemmene i/til den medsendte structen.
  *
- *  @param     f  - Forelesning-struct som får sine datamedlemmer oppdatert
+ *  @param     f  - Forelesning-struct som fï¿½r sine datamedlemmer oppdatert
  */
 void forelesningLesData(Forelesning* f)  {
     cout << "\tEmnenavn:  ";    cin.getline(f->emne, STRLEN/2);
@@ -74,7 +74,7 @@ void forelesningLesData(Forelesning* f)  {
 /**
  *  Skriver ut ALLE datamedlemmene i/til den medsendte structen.
  *
- *  @param     f  - Forelesning-struct som får sine datamedlemmer skrevet ut
+ *  @param     f  - Forelesning-struct som fï¿½r sine datamedlemmer skrevet ut
  */
 void forelesningSkrivData(const Forelesning* f)  {
     cout << '\t' << f->timeStart << ':'

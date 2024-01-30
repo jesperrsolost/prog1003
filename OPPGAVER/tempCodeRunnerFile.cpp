@@ -1,1 +1,1 @@
-return ((tot1 >= tot2) ? tid1 : tid2);
+for (int i = 0; i < MAXFORELESNINGER; i++) {
