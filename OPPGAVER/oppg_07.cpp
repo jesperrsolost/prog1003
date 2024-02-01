@@ -1,8 +1,8 @@
 /**
- *   Løsningsforslag til oppgave nr 7.
+ *   Lï¿½sningsforslag til oppgave nr 7.
  *
  *   Program som leser inn stringer og klokkeslett 
- *   vha. overloadede funksjoner og referanseoverføring.
+ *   vha. overloadede funksjoner og referanseoverfï¿½ring.
  *
  *   @file    OPPG_07.CPP
  *   @author  Frode Haug, NTNU
@@ -11,7 +11,7 @@
 
 #include <iostream>                //  cout, cin
 #include <string>                  //  string
-#include "LesData2.h"              //  Verktøykasse for lesing av diverse data
+#include "LesData2.h"              //  Verktï¿½ykasse for lesing av diverse data
 using namespace std;
 
 
@@ -37,7 +37,7 @@ void skriv(const Klokkeslett klokkeslett);
  *  Hovedprogrammet:
  */
 int main ()  {
-    int i;                                 //  Løkkevariabel.
+    int i;                                 //  Lï¿½kkevariabel.
     string       tekster[MAXSTK];          //  3x stringer/tekster.
     Klokkeslett  klokkesletter[MAXSTK];    //  3x Tid-structer.
 
@@ -69,7 +69,7 @@ int main ()  {
 /**
  *  Leser inn en tekst (som inneholder MINST ETT tegn).
  *
- *  @param  s  - string som fylles med tekst (referanseoverført)
+ *  @param  s  - string som fylles med tekst (referanseoverfï¿½rt)
  */
 void les(string & s)  {
     do {
@@ -81,7 +81,7 @@ void les(string & s)  {
 /**
  *  Leser inn alle data til en Klokkeslett-struct.
  *
- *  @param  klokkeslett  - som fylles med ALLE data (referanseoverført)
+ *  @param  klokkeslett  - som fylles med ALLE data (referanseoverfï¿½rt)
  */
 void les(Klokkeslett & klokkeslett)  {
     klokkeslett.time   = lesInt("Time  ", 0, 23);
@@ -93,9 +93,9 @@ void les(Klokkeslett & klokkeslett)  {
 /**
  *  Skriver ut et Klokkeslett med formatet tt:mm:ss.
  *
- *  @param  klokkeslett  - som får skrevet ut ALLE sine data
+ *  @param  klokkeslett  - som fï¿½r skrevet ut ALLE sine data
  */
-void skriv(const Klokkeslett klokkeslett)  {  // Legger evt. på startende '0':
+void skriv(const Klokkeslett klokkeslett)  {  // Legger evt. pï¿½ startende '0':
  cout << ((klokkeslett.time   < 10) ? "0" : "") << klokkeslett.time   << ':'
       << ((klokkeslett.minutt < 10) ? "0" : "") << klokkeslett.minutt << ':'
       << ((klokkeslett.sekund < 10) ? "0" : "") << klokkeslett.sekund << '\n';
