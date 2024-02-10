@@ -1,24 +1,24 @@
 /**
- *   Programeksempel nr 6 - Større programeksempel.
+ *   Programeksempel nr 6 - Stï¿½rre programeksempel.
  *
- *   Eksemplet viser/vektlegger referanseoverføring, string og vector,
- *   men også litt overloading av funksjoner og en god del bruk av pekere.
+ *   Eksemplet viser/vektlegger referanseoverfï¿½ring, string og vector,
+ *   men ogsï¿½ litt overloading av funksjoner og en god del bruk av pekere.
  *
- *   Programmet holder orden på en person sin boksamling ved å kunne:
+ *   Programmet holder orden pï¿½ en person sin boksamling ved ï¿½ kunne:
  *     - legge inn en ny bok
  *     - skriv alt om en gitt bok
- *     - skrive ut alle bøkene vha. peker            |  For å vise overloading
- *     - skrive ut alle bøkene vha. struct-variabel  |    av funksjoner.
+ *     - skrive ut alle bï¿½kene vha. peker            |  For ï¿½ vise overloading
+ *     - skrive ut alle bï¿½kene vha. struct-variabel  |    av funksjoner.
  *     - sette en bok som lest
  *     - fjerne en gitt bok
  *
  *****************************************************************************
  *      NB:      NB:      NB:      NB:      NB:      NB:      NB:      NB:
- *   Når en parameter IKKE er CONST, fordi originalen skal endres/oppdateres,
- *   vil det heretter primært bli brukt REFERANSEOVERFØRING
+ *   Nï¿½r en parameter IKKE er CONST, fordi originalen skal endres/oppdateres,
+ *   vil det heretter primï¿½rt bli brukt REFERANSEOVERFï¿½RING
  *   (og IKKE PEKER til elementet).
  *   Er den derimot CONST, og det er noe som PEKER til elementet,
- *   så vil elementet bli medsendt ENTEN som en PEKER, ELLER OMGJORT
+ *   sï¿½ vil elementet bli medsendt ENTEN som en PEKER, ELLER OMGJORT
  *   til en vanlig variabel/struct/objekt (jfr. XXXXXXXXXX nedenfor).
  *
  *****************************************************************************
@@ -32,7 +32,7 @@
 #include <iomanip>                 //  setw
 #include <string>                  //  string
 #include <vector>                  //  vector
-#include "LesData2.h"              //  Verktøykasse for lesing av diverse data
+#include "LesData2.h"              //  Verktï¿½ykasse for lesing av diverse data
 using namespace std;
 
 
@@ -61,8 +61,8 @@ void skrivMeny();
 void slettAlt();
 
 
-vector <Bok*> gBokene;       ///<  Alle bøkene i oversikten/datastrukturen.
-                             //    NB:  Trenger nå ikke lengre 'gAntallBoker',
+vector <Bok*> gBokene;       ///<  Alle bï¿½kene i oversikten/datastrukturen.
+                             //    NB:  Trenger nï¿½ ikke lengre 'gAntallBoker',
                              //         da gBokene.size() er dette antallet.
 
 /**
@@ -96,7 +96,7 @@ int main()  {
 /**
  *  Leser inn og fyller ALLE en Bok sine datamedlemmer.
  *
- *  @param   bok  - Structen som får sine datamedlemmer innlest/fylt
+ *  @param   bok  - Structen som fï¿½r sine datamedlemmer innlest/fylt
  */
 void bokLesData(Bok & bok) {
     cout << "\tTittel:     ";       getline(cin, bok.tittel);
@@ -109,7 +109,7 @@ void bokLesData(Bok & bok) {
 /**
  *  Setter en Bok som lest.
  *
- *  @param   bok  - Structen som får 'lest' satt til 'true'
+ *  @param   bok  - Structen som fï¿½r 'lest' satt til 'true'
  */
 void bokLest(Bok & bok) {
     cout << "\n\tBoken er markert/satt som 'Lest'.\n";
@@ -120,7 +120,7 @@ void bokLest(Bok & bok) {
 /**
  *  Overloaded funksjon som skriver en structs data (peker som parameter).
  *
- *  @param   bok  - PEKER til structen hvis data utskrives på skjermen
+ *  @param   bok  - PEKER til structen hvis data utskrives pï¿½ skjermen
  */
 void bokSkrivData(const Bok* bok)  {
    cout << "\t\t\"" << bok->tittel << "\" av " << bok->forfatter
@@ -132,7 +132,7 @@ void bokSkrivData(const Bok* bok)  {
 /**
  *  Overloaded funksjon som skriver structdata (struct-variabel som paramtr).
  *
- *  @param   bok  - Struct-VARIABEL hvis data utskrives på skjermen
+ *  @param   bok  - Struct-VARIABEL hvis data utskrives pï¿½ skjermen
  */
 void bokSkrivData(const Bok bok)  {
    cout << "\t\t\"" << bok.tittel << "\" av " << bok.forfatter
@@ -142,18 +142,18 @@ void bokSkrivData(const Bok bok)  {
 
 
 /**
- *  Ønsket boknummer slettes, og bakerste flyttes til den slettedes plass.
+ *  ï¿½nsket boknummer slettes, og bakerste flyttes til den slettedes plass.
  */
 void fjernBok() {
-    int nr = lesInt("\tFjerne bok nr", 1, gBokene.size());  //  Ønsket nr.
+    int nr = lesInt("\tFjerne bok nr", 1, gBokene.size());  //  ï¿½nsket nr.
     delete gBokene[nr-1];                      // Sletter aktuell bok!
     gBokene[nr-1] = gBokene[gBokene.size()-1]; // Bakerst flyttes til plassen.
-    gBokene.pop_back();                        // Siste PEKER slettes også!
+    gBokene.pop_back();                        // Siste PEKER slettes ogsï¿½!
 }
 
 
 /**
- *  Ønsket boknummer markeres som lest.
+ *  ï¿½nsket boknummer markeres som lest.
  *
  *  @see   boklest(...)
  */
@@ -177,7 +177,7 @@ void nyBok() {
 
 
 /**
- *  Overloaded funksjon som skriver alle bøkene vha PEKER.
+ *  Overloaded funksjon som skriver alle bï¿½kene vha PEKER.
  *
  *  @see   bokSkrivData(const Bok* bok)
  */
@@ -190,7 +190,7 @@ void skrivAlleBoker1() {
 
 
 /**
- *  Overloaded funksjon som skriver alle bøkene vha STRUCT-VARIABEL.
+ *  Overloaded funksjon som skriver alle bï¿½kene vha STRUCT-VARIABEL.
  *
  *  @see   bokSkrivData(const Bok bok)
  */
@@ -203,7 +203,7 @@ void skrivAlleBoker2() {
 
 
 /**
- *  Skriver alt en ETT ønsket boknummer.
+ *  Skriver alt en ETT ï¿½nsket boknummer.
  *
  *  @see   bokSkrivData(const Bok* bok)
  */
@@ -216,14 +216,14 @@ void skrivBok() {
 
 
 /**
- *  Skriver programmets menyvalg/muligheter på skjermen.
+ *  Skriver programmets menyvalg/muligheter pï¿½ skjermen.
  */
 void skrivMeny() {
-    cout << "\nFølgende kommandoer er tilgjengelig:\n"
+    cout << "\nFï¿½lgende kommandoer er tilgjengelig:\n"
          << "\tN - Ny bok\n"
          << "\tS - Skriv EN gitt bok\n"
-         << "\t1 - skriv alle bøkene vha. peker\n"
-         << "\t2 - skriv alle bøkene vha. struct-variabel\n"
+         << "\t1 - skriv alle bï¿½kene vha. peker\n"
+         << "\t2 - skriv alle bï¿½kene vha. struct-variabel\n"
          << "\tL - Lest en bok\n"
          << "\tF - Fjern en gitt bok\n"
          << "\tQ - Quit / avslutt\n";
@@ -234,13 +234,13 @@ void skrivMeny() {
  *  Sletter/fjerner ALLE tilpekte structer (Bok), og alle pekerne i vectoren.
  */
 void slettAlt() {
-                              //  EN måte (av mange) å fjerne ALT i vectoren:
-    while (!gBokene.empty()) {              //  Så lenge PEKERE i vectoren:
+                              //  EN mï¿½te (av mange) ï¿½ fjerne ALT i vectoren:
+    while (!gBokene.empty()) {              //  Sï¿½ lenge PEKERE i vectoren:
         delete gBokene[gBokene.size()-1];   //  Sletter den SISTE TILPEKTE.
         gBokene.pop_back();                 //  Sletter/fjerner SELVE PEKEREN.
     }
-/*                            //  En annen (og enklere?) måte:
-  for (int i = 0; i < gBokene.size(); i++)  // Sletter ALLE bøkene/struct'ene:
+/*                            //  En annen (og enklere?) mï¿½te:
+  for (int i = 0; i < gBokene.size(); i++)  // Sletter ALLE bï¿½kene/struct'ene:
       delete gBokene[i];
   gBokene.clear();                        //  Fjerner ALLE PEKERNE i vectoren.
 */
