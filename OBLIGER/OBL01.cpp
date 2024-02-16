@@ -1,6 +1,7 @@
 /**
  * Oblig nummer 1
  * Ferdig: Ja
+ * Rettet: Ja
  * 
  * @file OBL01.cpp
  * @author Jesper Ruud Soløst
@@ -8,13 +9,15 @@
  * @date 30.01.2024
 */
 
-using namespace std;
-
 #include <iostream>             // cout, cin
 #include <vector>               // vector
 #include <string>               // string
 #include "LesData2.h"           // Verktoykasse for lesing av diverse data
+using namespace std;
 
+/**
+ * Restaurant med navn, adresse, type, omtale og terningkast
+*/
 struct Restaurant {
  string navn,
  adresse,                       // Gateadresse i en og samme by
@@ -30,9 +33,7 @@ void skrivAlleRestauranter();                            // funksjonene
 void skrivMeny();                                        //
 void slettAlt();                                         //
 
-
-
-vector <Restaurant*> gRestauranter;     // Alle restaurantene i datastrukturen   
+vector <Restaurant*> gRestauranter;     ///< Alle restaurantene i datastrukturen   
 
 /**
  * Hovedprogrammet:
@@ -41,7 +42,7 @@ int main(){
     char kommando;
 
     skrivMeny();
-    kommando = lesChar("\nKommando");   ///< Alle restaurantene i datastrukturen
+    kommando = lesChar("\nKommando"); 
 
     while (kommando != 'Q') {
         switch (kommando) {
@@ -59,6 +60,8 @@ int main(){
 
 /**
  * Ny restaurant legges inn i datastrukturen (vectoren 'gRestauranter')
+ * 
+ * @see restaurantLesData(...)
 */
 void nyRestaurant(){
     Restaurant* nyRestaurant = new Restaurant;   //  Ny restaurant-struct.
@@ -95,6 +98,8 @@ void restaurantSkrivData(const Restaurant* restaurant){
 
 /**
  * Skriver alle restaurantene
+ * 
+ * @see restaurantSkrivData(...)
 */
 void skrivAlleRestauranter(){
     for (int i = 0; i < gRestauranter.size(); i++){
@@ -116,8 +121,8 @@ void skrivMeny(){
 /**
  * Sletter/fjerner ALLE tilpekte structer (Bok), og alle pekerne i vectoren.
 */
-void slettAlt(){
-    for (int i = 0; i < gRestauranter.size(); i++)  // Sletter ALLE b�kene/struct'ene:
+void slettAlt(){           // Sletter ALLE bøkene/struct'ene:
+    for (int i = 0; i < gRestauranter.size(); i++)  
         delete gRestauranter[i];
     gRestauranter.clear();
     cout << "\n\n\n\tAlle elementer og pekere er slettet...";
