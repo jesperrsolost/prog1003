@@ -1,5 +1,7 @@
 /**
  * Oppgave 10 i heftet
+*//**
+ * Oppgave 10 i heftet
  * 
  * Ferdig: Nei
  * 

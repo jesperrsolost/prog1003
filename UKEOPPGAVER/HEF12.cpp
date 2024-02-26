@@ -41,7 +41,7 @@ int main(){
     do {
         
         kommando = lesChar("\nLese inn ny kunde?");
-    } while (kommano != 'Q');
+    } while (kommando != 'Q');
     return 0;
 }
 
