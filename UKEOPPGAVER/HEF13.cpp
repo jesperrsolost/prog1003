@@ -1,7 +1,7 @@
 /**
  * Oppgave 13 i heftet
  * 
- * Ferdig: Nei
+ * Ferdig: Ja
  * 
  * @file HEF13.cpp
  * @author Jesper Ruud Soløst
@@ -23,12 +23,13 @@ class Publikasjon{
         string navn;
         int aar;
     public:
+    Publikasjon(){}
     void lesData(){
         cout << "Navn: "; getline(cin, navn);
-        aar = lesInt("Aar", 0, 999);
+        aar = lesInt("Aar", 0, 2024);
     }
     void skrivData(){
-        cout << "Navn: " << navn << '\n';
+        cout << "\nNavn: " << navn << '\n';
         cout << "Aar : " << aar  << '\n';
     }
 };
@@ -42,6 +43,7 @@ class Bok : public Publikasjon {
                ISBN;
         float pris;
     public:
+    Bok(){lesData();}
     void lesData(){
         Publikasjon::lesData();
         cout << "Forfatter: "; getline(cin, forfatter);
@@ -52,8 +54,8 @@ class Bok : public Publikasjon {
     void skrivData(){
         Publikasjon::skrivData(); // Kaller forelder sin skrivData()
         cout << "Forfatter: " << forfatter << '\n'; //
-        cout << "ISBN     : " << forfatter << '\n'; // Skriver ut data
-        cout << "Pris     : " << forfatter << '\n'; //
+        cout << "ISBN     : " << ISBN      << '\n'; // Skriver ut data
+        cout << "Pris     : " << pris      << '\n'; //
     }
 };
 
@@ -66,6 +68,7 @@ class Blad : public Publikasjon {
             ukeNr,           // Bladets utgivelsesuke
             aarsAbonnement;  // Vet ikke helt
     public:
+    Blad(){lesData();}
     void lesData(){
         Publikasjon::lesData();
         nummer         = lesInt("Nummer        ", 1, 9999); //
@@ -102,7 +105,7 @@ int main(){
             }
         }
 
-        svar = lesChar("Lese inn ny bok/blad? (J/n): ");  // Ny innlesing?
+        svar = lesChar("Lese inn ny bok/blad? (J/n)");  // Ny innlesing?
     } while (svar != 'N');
     
     return 0;
