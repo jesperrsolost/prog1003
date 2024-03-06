@@ -20,7 +20,11 @@ using namespace std;
 */
 class Kjoretoy {
     private:
+        string registreringsNr;
     public:
+        virtual void lesData(){
+
+        }
 };
 
 /**
@@ -28,7 +32,11 @@ class Kjoretoy {
 */
 class Bil : public Kjoretoy {
     private:
+        int antPassasjerer;
     public:
+        virtual void lesData(){
+            
+        }
 };
 
 /**
@@ -36,13 +44,23 @@ class Bil : public Kjoretoy {
 */
 class Vogntog : public Kjoretoy {
     private:
+        float tonnLast;
     public:
+        virtual void lesData(){
+            
+        }
 };
+
+vector <Kjoretoy*> gKjoretoy;
 
 /**
  * Hovedprogrammet:
 */
 int main(){
+    char svar;
 
+    do {
+        cout << "";
+    } while (svar != 'N');
     return 0;
 }
