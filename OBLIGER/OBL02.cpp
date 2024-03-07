@@ -4,30 +4,32 @@
  * @file OBL02.cpp
  * @author Jesper Ruud Soløst
  * 
- * @date 21.02.2024
+ * @date 26.02.2024
 */
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include "LesData2.h"
+#include <iostream>                      // cout, cin
+#include <string>                        // string
+#include "LesData2.h"                    // Verktøykasse for lesing av div. data
 
 using namespace std;
 
 /**
- * Baseklasse for dyr med navn
+ * Baseklasse for dyret
 */
 class Dyr{
     protected:
-        string navn;
+        string navn;                            // Dyrets navn
     public:
     Dyr() { }
     virtual void lesData() {
         cout << "Skriv inn navn for dyret: ";
-        getline(cin, navn);
+        getline(cin, navn);                     // Leser inn dyrenavn
     }
     virtual void skrivData(){
-        cout << "Navn: " << navn << '\n';
+        cout << "Navn: " << navn << '\n';       // Skriver ut dyrenavn
+    }
+    Dyr(const string& dyreNavn) : navn(dyreNavn){
+        navn = dyreNavn;                        // Oppdaterer dyrenavn
     }
 };
 
@@ -36,18 +38,18 @@ class Dyr{
 */
 class DyrILuft : public Dyr {
     private:
-        string omraade;
+        string omraade;                              // Område dyret lever i
     public:
         DyrILuft() {}
         ~DyrILuft() {}
         void lesData() {
             Dyr::lesData();
             cout << "Skriv inn omraade: ";
-            getline(cin, omraade);
+            getline(cin, omraade);                   // Leser inn område
         }
         void skrivData(){
             Dyr::skrivData();
-            cout << "Omraade: " << omraade << '\n';
+            cout << "Omraade: " << omraade << '\n'; // Skriver ut område
         }
 };
 
@@ -56,16 +58,16 @@ class DyrILuft : public Dyr {
 */
 class Insekt : public DyrILuft {
     private:
-        int bein;
+        int bein;                                   // Innsektets antall bein
     public:
         Insekt(){ lesData();}
         void lesData(){
-            DyrILuft::lesData();
-            bein = lesInt("Antall bein", 0,1000);
+            DyrILuft::lesData();                    // Leser inn data i DyrILuft
+            bein = lesInt("Antall bein", 0,1000);   // Leser inn antall bein
         }
         void skrivData(){
-            DyrILuft::skrivData();
-            cout << "Antall bein: " << bein << '\n';
+            DyrILuft::skrivData();                  // Skriver ut data fra DyrILuft
+            cout << "Antall bein: " << bein << '\n';// Skriver ut antall bein
         }
 };
 
@@ -74,16 +76,16 @@ class Insekt : public DyrILuft {
 */
 class Fugl : public DyrILuft {
     private:
-        int vingespenn;
+        int vingespenn;                         // Fuglens vingespenn
     public:
         Fugl(){ lesData();}
         void lesData(){
-            DyrILuft::lesData();
-            vingespenn = lesInt("Vingespenn i cm", 0,100);
+            DyrILuft::lesData();                // Leser inn data i DyrILuft
+            vingespenn = lesInt("Vingespenn i cm", 0,100); // Leser inn vingespenn
         }
         void skrivData(){
-            DyrILuft::skrivData();
-            cout << "Vingespenn: " << vingespenn << '\n';
+            DyrILuft::skrivData();              // Skriver ut data fra DyrILuft
+            cout << "Vingespenn: " << vingespenn << '\n'; // Skriver ut vingespenn
         }
 };
 
@@ -92,19 +94,24 @@ class Fugl : public DyrILuft {
 */
 class DyrIVann : public Dyr {
     private:
-        string vannType;
+        string vannType;                        // Dyrets vanntype
     public:
         DyrIVann() {}
         ~DyrIVann() {}
         void lesData() {
-            Dyr::lesData();
+            Dyr::lesData();                     // Leser inn data fra Dyr
             cout << "Skriv inn vanntype (salt/fersk): ";
-            getline(cin, vannType);
+            getline(cin, vannType);             // Leser inn vanntypen
         }
         void skrivData(){
-            Dyr::skrivData();
-            cout << "Vanntype: " << vannType << '\n';
+            Dyr::skrivData();                   // Skriver ut data fra Dyr
+            cout << "Vanntype: " << vannType << '\n'; // Skriver ut vanntypen
         }
+        DyrIVann(const string& fiskenavn) {     // Dersom fiskenavn er tilsendt
+            cout << "Skriv inn vanntype (salt/fersk): ";
+            getline(cin, vannType);             // Leser inn vanntype
+        }
+
 };
 
 /**
@@ -112,73 +119,81 @@ class DyrIVann : public Dyr {
 */
 class Fisk : public DyrIVann {
     private:
-        int lengde;
+        int lengde;                         // Fiskens lengde
     public:
         Fisk(){ lesData();}
         void lesData(){
-            DyrIVann::lesData();
-            lengde = lesInt("Lengde i cm", 0,100);
+            DyrIVann::lesData();            // Leser inn data fra DyrIVann
+            lengde = lesInt("Lengde i cm", 0,100); // Leser inn lengden
         }
         void skrivData(){
-            DyrIVann::skrivData();
-            cout << "Lengde: " << lengde << '\n';
+            DyrIVann::skrivData();          // Skriver ut data fra DyrIVann
+            cout << "Lengde: " << lengde << '\n'; // Skriver ut lengden
+        }
+        Fisk(const string& fiskenavn) : DyrIVann(fiskenavn){ // Dersom fiskenavn
+                                                             // er tilsendt
+            navn = fiskenavn;           // oppdaterer navn til Dyr
+            lengde = lesInt("Lengde i cm", 0,100); // Leser inn lengde
         }
 };
-
 /**
  * Subklasse med skalldyr
 */
 class Skalldyr : public DyrIVann {
     private:
-        bool spisende;
+        bool spisende;                      // Er skalldyret spisende?
     public:
         Skalldyr(){ lesData();}
         void lesData(){
-            DyrIVann::lesData();
-            spisende = lesInt("Spisende?", 0,1);
+            DyrIVann::lesData();            // Leser inn data fra DyrIVann
+            spisende = lesInt("Spisende?", 0,1); // Spør om dyret er spisende
         }
         void skrivData(){
-            DyrIVann::skrivData();
-            cout << "Spisende: ";
-            if (spisende) {
-                cout << "Ja";
-            } else {
-                cout << "Nei";
+            DyrIVann::skrivData();          // Skriver ut data fra DyrIVann
+            cout << "Spisende: ";       
+            if (spisende) {                 //
+                cout << "Ja";               // Dersom dyret er spisende skriver
+            } else {                        // den ut "ja", ellers "nei".
+                cout << "Nei";              //
             }
         }
 };
 
-void skrivMeny();
-void nyFisk();
+void skrivMeny();                           // Skriver ut meny
 
 /**
  * Hovedprogrammet:
 */
 int main(){
-    char kommando;
+    char kommando;                          // Kommando variabel
 
-    skrivMeny();
-    kommando = lesChar("\nKommando");
+    skrivMeny();                            // Skriver ut meny
+    kommando = lesChar("\nKommando");       // Leser inn kommando
 
-    while (kommando != 'Q') {
-        Dyr* dyret = nullptr;
+    while (kommando != 'Q') {               // Sålenge brukeren ikke exiter
+        Dyr* dyret = nullptr;               // Setter peker til nullptr som standard
         switch (kommando) {
             case 'I': dyret = new Insekt();     break;
             case 'B': dyret = new Fugl();       break;
-            case 'F': nyFisk();                 break;
+            case 'F': { // Dersom fisk er valgt, bestemmer den med/uten parameter
+                string fiskenavn;
+                cout << "Skriv inn fiskenavn: ";
+                getline(cin, fiskenavn);
+                dyret = (fiskenavn.empty()) ? new Fisk() : new Fisk(fiskenavn);       
+            } break;
             case 'S': dyret = new Skalldyr();   break;
         }
         
-        cout << '\n';
+        cout << '\n';                       // Pustelinje
 
-        dyret->skrivData();
+        dyret->skrivData();                 // Skriver ut info om dyret
 
-        delete dyret;
-        dyret = nullptr;
+        delete dyret;                       // Sletter dyret etter utskrift
+        dyret = nullptr;                    // Setter tilbake til nullptr
 
-        kommando = lesChar("\nKommando");
+        kommando = lesChar("\nKommando");   // Spør om ny kommando
     }
-    return 0;
+    return 0;                               // Avslutter programmet
 }
 
 /**
@@ -192,18 +207,4 @@ void skrivMeny() {
          << "\tF - Fisk\n"
          << "\tX - Skriv alle\n"
          << "\tQ - Quit / avslutt\n";
-}
-
-/**
- * Fesk
-*/
-void nyFisk() {
-    string navn;
-    cout << "Skriv inn navn for dyret: ";
-        getline(cin, navn);
-    if (navn == ""){
-        dyret = new Fisk();
-    } else {
-        dyret = new Fisk(navn);
-    }
 }

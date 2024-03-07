@@ -1,7 +1,7 @@
 /**
  * Oppgave 12 i heftet
  * 
- * Ferdig: Nei
+ * Ferdig: Nei (Funksjonalitet fungerer, mangler kommentering)
  * 
  * @file HEF11.cpp
  * @author Jesper Ruud Soløst
@@ -30,18 +30,38 @@ class Kunde {
         void skrivData();
 };
 
+vector <Kunde*> gKunder;
+
 /**
  * Hovedprogrammet:
 */
 int main(){
-    
-    vector <Kunde*> kunder;
-    char kommando = lesChar("\nKommando");
+    Kunde* nyKunde;
+    char kommando;
 
     do {
+        cout << "\n\nAntall kontoer for kunde nr." << gKunder.size()+1;
         
-        kommando = lesChar("\nLese inn ny kunde?");
-    } while (kommando != 'Q');
+        nyKunde = new Kunde(lesInt("", 1, 20));
+
+        nyKunde->lesData();
+
+        gKunder.push_back(nyKunde);
+
+        kommando = lesChar("\nLese inn ny kunde? (J/n)");
+    } while (kommando != 'N');
+
+    cout << "\n\nSkriver ut kundenes data:\n";
+
+    for (int i = 0; i < gKunder.size(); i++){
+        cout << "Kunde nr." << i+1;
+        gKunder[i]->skrivData();
+        delete gKunder[i];
+    }
+    gKunder.clear();
+
+    cout << "\n\n";
+
     return 0;
 }
 
@@ -50,14 +70,17 @@ int main(){
  * som er n lang, og alle elementene initieres til 0.0F 
 */
 Kunde::Kunde(const int n){
-    
+    kontoer = new vector <float>(n);
+    for (int i = 0; i < n; i++) {
+        (*kontoer)[i] = 0.0F;
+    }
 }
 
 /**
  * Sletter alt det som objektet har sagt new om mens det har levd 
 */
 Kunde::~Kunde(){
-
+    delete kontoer;
 }
 
 /**
@@ -65,14 +88,21 @@ Kunde::~Kunde(){
  * aktuelle kontoene 
 */
 void Kunde::lesData(){
-    
+    cout << "Kundens navn: "; getline(cin, navn);
+    for (int i = 0; i < kontoer->size(); i++) {
+        cout << "Belop paa konto nr." << i+1;
+        (*kontoer)[i] = lesFloat("", 0, 10000000);
+    }
 }
 
 /**
  * Skriver navnet og innestående beløp på alle aktuelle kontoer
 */
 void Kunde::skrivData(){
-
+    cout << "Navn: " << navn << " har kontoer med folgende belop:";
+    for (int i = 0; i < kontoer->size(); i++){
+        cout << "\nKonto nr." << i+1 << ':' << (*kontoer)[i];
+    }
 }
 
 
