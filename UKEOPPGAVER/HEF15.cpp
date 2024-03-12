@@ -1,7 +1,7 @@
 /**
  * Oppgave 15 i heftet
  * 
- * Ferdig: Nei
+ * Ferdig: Ja
  * 
  * @file HEF15.cpp
  * @author Jesper Ruud Soløst
@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include "LesData2.h"
+#include "LesData2.h"
 
 using namespace std;
 
@@ -21,11 +22,15 @@ using namespace std;
 */
 class Kjoretoy {
     private:
-        string registreringsNr;
+        string regNr;
     public:
         virtual void lesData(){
-
+            cout << "RegNr: "; getline(cin, regNr);
         }
+        virtual void skrivData(){
+            cout << "\nRegNr: " << regNr << '\n';
+        }
+        virtual bool tomt() const = 0;
 };
 
 /**
@@ -36,8 +41,14 @@ class Bil : public Kjoretoy {
         int antPassasjerer;
     public:
         virtual void lesData(){
-            
+            Kjoretoy::lesData();
+            antPassasjerer = lesInt("Antall passasjerer", 0, 6);
         }
+        virtual void skrivData(){
+            Kjoretoy::skrivData();
+            cout << "Antall passasjerer: " << antPassasjerer << '\n';
+        }
+        virtual bool tomt() const { return (antPassasjerer == 0); }
 };
 
 /**
@@ -48,26 +59,61 @@ class Vogntog : public Kjoretoy {
         float tonnLast;
     public:
         virtual void lesData(){
-            
+            Kjoretoy::lesData();
+            tonnLast = lesFloat("Tonn last", 0, 100);
         }
+        virtual void skrivData(){
+            Kjoretoy::skrivData();
+            cout << "Tonn last: " << tonnLast << '\n';
+        }
+        virtual bool tomt() const { return (tonnLast == 0.0F); }
 };
 
-vector <Kjoretoy*> gKjoretoy;
+vector <Kjoretoy*> gKjoretoyene;
 
 /**
  * Hovedprogrammet:
 */
 int main(){
-    char svar;
-
     Kjoretoy* nyttKjoretoy;
+    char type;
 
     do {
-        svar = lesInt("Legg inn (1) Bil eller (2) Vogntog", 1, 2);
+        do {
+            type = lesChar("B(il) eller V(ogntog)?");
+        } while (type != 'B' && type != 'V');
+        if (type == 'B'){ nyttKjoretoy = new Bil;     }
+        else            { nyttKjoretoy = new Vogntog; }
 
-        switch(svar){
-            case 1: break;
-        }
-    } while (svar != 'N');
+        nyttKjoretoy->lesData(); // Leser inn aktuelle data
+
+        gKjoretoyene.push_back(nyttKjoretoy); // Legger inn i vektoren
+
+        type = lesChar("Lese inn nytt kjoretoy?(J/n)");
+    } while (type != 'N');
+
+    // Skriver ut ant. kjoretoy
+    cout << "Antall kjoretoy: " << gKjoretoyene.size() << '\n';
+
+    // Skriver ut alle kjoretoy
+    for (int i = 0; i < gKjoretoyene.size(); i++){ 
+        cout << "\nKjoretoy nr." << i+1 << ":  ";
+        gKjoretoyene[i]->skrivData(); cout << '\n';
+    }
+
+    // Skriver nr. til de tomme:
+    cout << "Kjoretoyene som er tomme (for passasjerer eller last):\nNr:";
+    for (int i = 0; i < gKjoretoyene.size(); i++){
+        if (gKjoretoyene[i]->tomt()) cout << "  " << i+1;
+    }
+
+    // Sletter alle kjoretoyene og alle pekerne til dem
+    for (int i = 0; i < gKjoretoyene.size(); i++){
+        delete gKjoretoyene[i];
+    }
+    gKjoretoyene.clear();
+
+    cout << "\n\n";
+
     return 0;
 }
