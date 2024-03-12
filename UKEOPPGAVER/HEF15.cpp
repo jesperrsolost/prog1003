@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "LesData2.h"
 
 using namespace std;
 
@@ -59,8 +60,14 @@ vector <Kjoretoy*> gKjoretoy;
 int main(){
     char svar;
 
+    Kjoretoy* nyttKjoretoy;
+
     do {
-        cout << "";
+        svar = lesInt("Legg inn (1) Bil eller (2) Vogntog", 1, 2);
+
+        switch(svar){
+            case 1: break;
+        }
     } while (svar != 'N');
     return 0;
 }
