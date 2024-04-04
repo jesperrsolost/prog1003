@@ -1,3 +1,7 @@
+/**
+ * Husk at dette er en moderklasse til MuseumGalleri, Kirke og Severdighet
+*/
+
 #ifndef __ATTRAKSJON_H
 #define __ATTRAKSJON_H
 

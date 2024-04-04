@@ -7,10 +7,12 @@
 class Attraksjon;
 
 class By {
-private:
-std::string land;
-std::list <Attraksjon*> attraksjoner;
-public:
+    private:
+        std::string land;
+        std::list <Attraksjon*> attraksjoner;
+    public:
+        By();
+        void skrivAlle();
 };
 
 #endif
