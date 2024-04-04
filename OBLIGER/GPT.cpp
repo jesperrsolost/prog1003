@@ -150,12 +150,22 @@ private:
     int lengde;
 
 public:
-    Fisk(const string& fiskenavn) : DyrIVann(fiskenavn) {
+    Fisk() : DyrIVann(), lengde(0) {
+        // Les fiske-spesifikke data
+        lesLengde();
+    }
+
+    Fisk(const string& fiskenavn) : DyrIVann(fiskenavn), lengde(0) {
+        // Ingen lesing av data her, da DyrIVann constructor allerede tar seg av det.
         lesLengde();
     }
 
     void lesData() override {
-        DyrIVann::lesData();
+        // Kall kun DyrIVann::lesData() hvis navn ikke er satt
+        if (navn.empty()) {
+            DyrIVann::lesData();
+        }
+        // Kall lesLengde() uansett
         lesLengde();
     }
 
@@ -168,6 +178,8 @@ public:
         cout << "Lengde: " << lengde << '\n';
     }
 };
+
+
 
 
 
@@ -227,9 +239,9 @@ int main() {
             case 'F':
                 {
                     string fiskenavn;
-                    cout << "Skriv inn fiskenavn: ";
+                    cout << "Skriv inn fiskenavn (trykk enter for parameterløs constructor): ";
                     getline(cin, fiskenavn);
-                    dyret = new Fisk(fiskenavn);
+                    dyret = (fiskenavn.empty()) ? new Fisk() : new Fisk(fiskenavn);
                 }
                 break;
             case 'S':
